@@ -78,6 +78,11 @@ if(isset($_POST['register'])){
                 <input class="form-control" type="password" name="password" placeholder="Password" />
             </div>
 
+            <div class="form-group">
+                <label for="password">Re-type Password</label>
+                <input class="form-control" type="password" name="re-password" placeholder="Password" />
+            </div>
+
             <input type="submit" class="btn btn-success btn-block" name="register" value="Daftar" />
 
         </form>

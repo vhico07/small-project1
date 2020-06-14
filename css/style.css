@@ -1,0 +1,22 @@
+.jumbotron-fluid {
+	background: linear-gradient(to right, rgba(91,134,229, .92), rgba(54,209,220, .92));
+}
+
+
+
+
+
+
+
+
+
+
+footer{
+ 	position: absolute;
+  	bottom: 0;
+  	left: 0;
+  	right: 0;
+  	height: 80px;   
+ 	background: #D3D3D3;
+  /* get rid of min-width */
+}
