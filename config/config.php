@@ -1,8 +1,8 @@
 <?php
 
-$db_host = "database-master.ckw1ddumtncz.ap-southeast-1.rds.amazonaws.com";
-$db_user = "root";
-$db_pass = "vhico123";
+$db_host = "localhost";
+$db_user = "devopscilsy";
+$db_pass = "123456789";
 $db_name = "dbsosmed";
 
 try {    
@@ -12,3 +12,8 @@ try {
     //show error
     die("Terjadi masalah: " . $e->getMessage());
 }
+
+//untuk local nanti
+//$db_host = "localhost";
+//$db_user = "devopscilsy";
+//$db_pass = "1234567890";
