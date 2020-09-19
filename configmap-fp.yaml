@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: production
+  name: staging
 ---
 apiVersion: v1
 kind : Secret
 metadata :
   name: secret-fb
-  namespace: production
+  namespace: staging
 type: Opaque
 data:
   DB_USER: cm9vdA==
@@ -17,14 +17,14 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: location-configmap
-  namespace: production
+  namespace: staging
 data:
   config.php: |
         <?php
-        $db_host = "dbmaster.ckw1ddumtncz.ap-southeast-1.rds.amazonaws.com";
+        $db_host = "database.ckw1ddumtncz.ap-southeast-1.rds.amazonaws.com";
         $db_user = getenv("DB_USER");
         $db_pass = getenv("DB_PASS");
-        $db_name = "dbsosmed";
+        $db_name = "dbsosmed_stag";
         try {
         //create PDO connection
         $db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass);
