@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 apiVersion: v1
 kind: Namespace
 metadata:
   name: staging
 ---
-=======
->>>>>>> master
 kind: Service
 apiVersion: v1
 metadata:
