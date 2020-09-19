@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: socialmedia-service
-  namespace: production
+  namespace: staging
 spec:
   ports:
   - port: 8080
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: socialmedia-deployment
-  namespace: production
+  namespace: staging
 spec:
   selector:
     matchLabels:
@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: socialmedia
-        image: kovhico/socialmedia:latest
+        image: kovhico/socialmedia:buildnumber
         ports:
         - containerPort: 8080
         env:
@@ -55,7 +55,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: socialmedia-ingress
-  namespace: production
+  namespace: staging
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
