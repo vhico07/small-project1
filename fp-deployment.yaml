@@ -60,7 +60,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: fesbuk.gonnabegood.xyz
+  - host: as-fesbuk.gonnabegood.xyz
     http:
       paths:
       #- path: /
