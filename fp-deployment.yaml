@@ -1,8 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+---
 kind: Service
 apiVersion: v1
 metadata:
   name: socialmedia-service
-  namespace: staging
+  namespace: production
 spec:
   ports:
   - port: 8080
@@ -15,7 +20,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: socialmedia-deployment
-  namespace: staging
+  namespace: production
 spec:
   selector:
     matchLabels:
@@ -55,12 +60,12 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: socialmedia-ingress
-  namespace: staging
+  namespace: production
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: as-fesbuk.gonnabegood.xyz
+  - host: fesbuk.gonnabegood.xyz
     http:
       paths:
       #- path: /
