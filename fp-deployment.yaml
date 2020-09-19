@@ -1,0 +1,69 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: socialmedia-service
+  namespace: production
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    #type: LoadBalancer
+  selector:
+    app: socialmedia
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: socialmedia-deployment
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: socialmedia
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: socialmedia
+    spec:
+      containers:
+      - name: socialmedia
+        image: kovhico/socialmedia:buildnumber
+        ports:
+        - containerPort: 8080
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: secret-fb
+                key: DB_USER
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: secret-fb
+                key: DB_PASS
+        volumeMounts:
+        - name: config
+          mountPath: "/var/www/html/config"
+      volumes:
+      - configMap:
+            name: location-configmap
+        name: config
+      restartPolicy: Always
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: socialmedia-ingress
+  namespace: production
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: fesbuk.gonnabegood.xyz
+    http:
+      paths:
+      #- path: /
+      - backend:
+          serviceName: socialmedia-service
+          servicePort: 8080
