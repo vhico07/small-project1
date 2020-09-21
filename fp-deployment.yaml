@@ -40,22 +40,22 @@ spec:
           - name: DB_HOST
             valueFrom:
               secretKeyRef:
-                name: secret-fb
+                name: secret
                 key: DB_HOST
           - name: DB_USER
             valueFrom:
               secretKeyRef:
-                name: secret-fb
+                name: secret
                 key: DB_USER
           - name: DB_PASS
             valueFrom:
               secretKeyRef:
-                name: secret-fb
+                name: secret
                 key: DB_PASS
           - name: DB_NAME
             valueFrom:
               secretKeyRef:
-                name: secret-fb
+                name: secret
                 key: DB_NAME
         volumeMounts:
         - name: config
